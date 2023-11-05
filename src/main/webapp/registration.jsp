@@ -158,22 +158,20 @@
 <script src="js/main.js"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <link rel="stylesheet" href="alert/dist/sweetalert.css">
+<%
+	String status = (String) request.getAttribute("status");
+	if (status != null) {
+%>
 <script type="text/javascript">
-	var status = document.getElementById("status").value;
-	if (status == "success") {
-		swal("Congrats", "Account Created Successfully", "success");
-	}
+	alert(<%=  status%>)
 </script>
+<%
+	}
+%>
 <!-- Start Footer  -->
 <footer>
 	<div id="container_footer"></div>
-	<script>
-		fetch("../include/footer.jsp")
-				.then(response => response.text())
-				.then(data => {
-					document.getElementById("container_footer").innerHTML = data;
-				});
-	</script>
+
 </footer>
 <!-- End Footer  -->
 

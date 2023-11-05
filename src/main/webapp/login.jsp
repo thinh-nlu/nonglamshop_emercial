@@ -1,4 +1,5 @@
-<%@ page import="controller.helper.DBConnection" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,14 +37,7 @@
 
 <body>
 <div id="container_header"></div>
-<script>
-	fetch("../include/header.jsp")
-			.then(response => response.text())
-			.then(data => {
-				document.getElementById("container_header").innerHTML = data;
-			});
-</script>
-<% System.out.println(DBConnection.getConnection()); %>
+<jsp:include page="include/header.jsp"/>
 <!-- Start Main Top -->
 <header class="main-header">
 	<!-- Start Navigation -->
@@ -156,13 +150,10 @@
 	</section>
 </div>
 <footer>
-	<div id="container_footer"></div>
+	<jsp:include page="include/footer.jsp"/>
+	<% String status = (String) request.getAttribute("status");%>
 	<script>
-		fetch("../include/footer.jsp")
-				.then(response => response.text())
-				.then(data => {
-					document.getElementById("container_footer").innerHTML = data;
-				});
+		alert(<%= status%>)
 	</script>
 </footer>
 <!-- End Footer  -->

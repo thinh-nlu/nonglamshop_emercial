@@ -111,7 +111,7 @@
             <a href="insert-product.jsp" class="nav-link">Thêm sản phẩm</a>
         </li>
         <li class="nav-item">
-            <a href="../list-products.jsp" class="nav-link">Xem sản phẩm</a>
+            <a href="list-products.jsp" class="nav-link">Xem sản phẩm</a>
         </li>
         <li class="nav-item">
             <a href="#" class="nav-link">Danh sách khách hàng</a>

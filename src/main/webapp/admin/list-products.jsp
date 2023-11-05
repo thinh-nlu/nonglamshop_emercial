@@ -1,11 +1,18 @@
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.nonglamxanh_emercial.model.Product" %>
+<%@ page import="com.example.nonglamxanh_emercial.dao.ProductDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>NongLamXanh</title>
+    <link rel="stylesheet" href="../asset/bootstrap-icons-1.11.1/bootstrap-icons.css">
     <!-- Site Icons -->
-    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="../images/apple-touch-icon.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="../css/bootstrap.min.css">
@@ -20,16 +27,14 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
 </head>
-<body>
+<body class="">
+<%  ProductDAO dao = new ProductDAO();
+    List<Product> list = dao.getAllProduct();
+%>
 <div id="container_header"></div>
-<script>
-    fetch("../include/header.jsp")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("container_header").innerHTML = data;
-        });
-</script>
+<jsp:include page="../include/header.jsp"/>
 <!-- Start Main Top -->
 <header class="main-header">
     <!-- Start Navigation -->
@@ -110,48 +115,42 @@
     <!-- End Navigation -->
 </header>
 <!-- End Main Top -->
-<div class="container mt-3">
-    <h1 class="text-center">Thêm sản phẩm</h1>
-    <!-- form -->
-    <form action="insert-product" method="post" enctype="multipart/form-data">
-        <!-- title -->
-        <div class="form-outline mb-4 w-50 m-auto">
-            <label for="product_title" class="form-label">Tên sản phẩm</label>
-            <input type="text" name="product_title" id="product_title" class="form-control"
-                   placeholder="Nhập sản phẩm" autocomplete="off" required="required">
-        </div>
+<h3 class="text-center text-dark pb-3 display-4 font-weight-normal" >Tất cả sản phẩm</h3>
+<div class="px-lg-5 pt-xl-5">
+    <table class="table table-striped text-center ">
+        <thead class="bg-dark">
+        <tr class="text-light">
+            <th>ID</th>
+            <th>Tên sản phẩm </th>
+            <th>Hình ảnh sản phẩm </th>
+            <th>Giá</th>
+            <th>Đơn giá</th>
+            <th>Chỉnh sửa</th>
+            <th>Xóa</th>
+        </tr>
+        </thead>
+        <tbody class="bg-light text-dark">
 
-        <div class="form-outline mb-4 w-50 m-auto">
-            <label for="quanity" class="form-label">Đơn Giá</label>
-            <input type="text" name="quanity" id="quanity" class="form-control"
-                   placeholder="Nhập đơn giá" autocomplete="off" required="required">
-        </div>
-        <!-- price -->
-        <div class="form-outline mb-4 w-50 m-auto">
-            <label for="product_price" class="form-label">Giá sản phẩm</label>
-            <input type="text" name="product_price" id="product_price" class="form-control"
-                   placeholder="Nhập giá sản phẩm" autocomplete="off" required="required">
-        </div>
-        <!-- keywords -->
-        <div class="form-outline mb-4 w-50 m-auto">
-            <label for="product_keyword" class="form-label">Từ khóa</label>
-            <input type="text" name="product_keyword" id="product_keyword" class="form-control"
-                   placeholder="Nhập từ khóa" autocomplete="off" required="required">
-        </div>
-
-        <!-- image1 -->
-        <div class="form-outline mb-4 w-50 m-auto">
-            <label for="product_image1" class="form-label">Hình ảnh sản phẩm</label>
-            <input type="file" name="product_image1" id="product_image1" class="form-control"
-                   required="required">
-        </div>
-
-
-        <!-- submit button -->
-        <div class="form-outline mb-4 w-50 m-auto pt-2">
-            <input type="submit" name="insert_product" class="btn btn-info mb-3 px-3" value="Thêm sản phẩm">
-        </div>
-    </form>
+<%
+    if (list != null) {
+        for (Product p: list) {
+%>
+        <tr class='text-center text-dark font-weight-normal  '>
+            <td><%= p.getId()%></td>
+            <td><%= p.getTitle()%></td>
+            <td><img width="50" height="50" class='cart_img' src='../images/gallery-img-02.jpg'></td>
+            <td><%= p.getPrice()%></td>
+            <td> <%= p.getUnit()%> </td>
+            <td><a href="#" class='text-dark'><i class=" bi bi-pencil-square"> </i></a></td>
+            <td><a href="#" class='text-dark'><i class="bi bi-trash"></i></a></td>
+        </tr>
+        <%
+                }
+            }
+        %>
+        </tbody>
+    </table>
 </div>
+<jsp:include page="../include/footer.jsp"/>
 </body>
 </html>
