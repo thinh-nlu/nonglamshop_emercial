@@ -6,19 +6,20 @@ public class Product {
     private String image;
     private String price;
     private String unit;
-    private int categoryId;
+    private String categoryId;
     private String keyword;
+    private String status;
 
     public Product(){}
 
-    public Product(int id, String title, String image, String price, String unit, int categoryId, String keyword) {
-        this.id = id;
+    public Product(String title, String image, String price, String unit, String categoryId, String keyword, String status) {
         this.title = title;
         this.image = image;
         this.price = price;
         this.unit = unit;
         this.categoryId = categoryId;
         this.keyword = keyword;
+        this.status = status;
     }
 
     public int getId() {
@@ -61,11 +62,11 @@ public class Product {
         this.unit = unit;
     }
 
-    public int getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(String categoryId) {
         this.categoryId = categoryId;
     }
 
@@ -75,6 +76,14 @@ public class Product {
 
     public void setKeyword(String keyword) {
         this.keyword = keyword;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

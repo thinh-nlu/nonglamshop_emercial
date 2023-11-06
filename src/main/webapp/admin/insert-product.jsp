@@ -1,3 +1,5 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,14 +24,11 @@
     <![endif]-->
 </head>
 <body>
-<div id="container_header"></div>
-<script>
-    fetch("../include/header.jsp")
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById("container_header").innerHTML = data;
-        });
-</script>
+<jsp:include page="../include/header.jsp"/>
+<%
+    String success = (String) request.getAttribute("success");
+    String failed = (String) request.getAttribute("failed");
+%>
 <!-- Start Main Top -->
 <header class="main-header">
     <!-- Start Navigation -->
@@ -112,8 +111,18 @@
 <!-- End Main Top -->
 <div class="container mt-3">
     <h1 class="text-center">Thêm sản phẩm</h1>
+
+    <%
+        if (request.getAttributeNames().equals("success")) {
+    %>
+    <p class="text-center text-success"><%= success%></p>
+    <%
+        } else {
+    %>
+    <p class="text-center text-danger"><%= failed%></p>
+    <%}%>
     <!-- form -->
-    <form action="insert-product" method="post" enctype="multipart/form-data">
+    <form action="../insert-product" method="post" enctype="multipart/form-data">
         <!-- title -->
         <div class="form-outline mb-4 w-50 m-auto">
             <label for="product_title" class="form-label">Tên sản phẩm</label>
@@ -122,8 +131,8 @@
         </div>
 
         <div class="form-outline mb-4 w-50 m-auto">
-            <label for="quanity" class="form-label">Đơn Giá</label>
-            <input type="text" name="quanity" id="quanity" class="form-control"
+            <label for="unit" class="form-label">Đơn Giá</label>
+            <input type="text" name="unit" id="unit" class="form-control"
                    placeholder="Nhập đơn giá" autocomplete="off" required="required">
         </div>
         <!-- price -->
@@ -135,14 +144,25 @@
         <!-- keywords -->
         <div class="form-outline mb-4 w-50 m-auto">
             <label for="product_keyword" class="form-label">Từ khóa</label>
-            <input type="text" name="product_keyword" id="product_keyword" class="form-control"
+                <input type="text" name="product_keyword" id="product_keyword" class="form-control"
                    placeholder="Nhập từ khóa" autocomplete="off" required="required">
         </div>
 
+        <div class="form-outline mb-4 w-50 m-auto">
+            <label for="product_category" class="form-label">Loại</label>
+            <select class="form-control" id="product_category" name="product-category">
+                <option>Rau</option>
+                <option>Củ</option>
+                <option>Hạt</option>
+                <option>Quả</option>
+            </select>
+        </div>
+
+
         <!-- image1 -->
         <div class="form-outline mb-4 w-50 m-auto">
-            <label for="product_image1" class="form-label">Hình ảnh sản phẩm</label>
-            <input type="file" name="product_image1" id="product_image1" class="form-control"
+            <label for="product_image" class="form-label">Hình ảnh sản phẩm</label>
+            <input type="file" name="product_image" id="product_image" class="form-control"
                    required="required">
         </div>
 
