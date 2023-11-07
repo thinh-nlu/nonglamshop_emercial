@@ -151,10 +151,10 @@
         <div class="form-outline mb-4 w-50 m-auto">
             <label for="product_category" class="form-label">Loại</label>
             <select class="form-control" id="product_category" name="product-category">
-                <option>Rau</option>
-                <option>Củ</option>
-                <option>Hạt</option>
-                <option>Quả</option>
+                <option value="rau">Rau</option>
+                <option value="cu">Củ</option>
+                <option value="hat">Hạt</option>
+                <option value="qua">Quả</option>
             </select>
         </div>
 

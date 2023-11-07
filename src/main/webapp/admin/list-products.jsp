@@ -2,6 +2,7 @@
 <%@ page import="com.example.nonglamxanh_emercial.model.Product" %>
 <%@ page import="com.example.nonglamxanh_emercial.dao.ProductDAO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.SQLException" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <!DOCTYPE html>
@@ -31,7 +32,12 @@
 </head>
 <body class="">
 <%  ProductDAO dao = new ProductDAO();
-    List<Product> list = dao.getAllProduct();
+    List<Product> list;
+    try {
+        list = dao.getAllProduct();
+    } catch (SQLException | ClassNotFoundException e) {
+        throw new RuntimeException(e);
+    }
 %>
 <div id="container_header"></div>
 <jsp:include page="../include/header.jsp"/>
